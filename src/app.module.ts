@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ProjectsModule } from './projects/projects.module.js';
+import { Project } from './projects/entities/project.entity.js';
 
 @Module({
   imports: [
@@ -21,8 +23,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         database: configService.get<string>('DB_NAME'),
         autoLoadEntities: true,
         synchronize: true,
+        entities: [Project]
       }),
     }),
+
+    ProjectsModule,
   ],
   controllers: [],
   providers: [],
