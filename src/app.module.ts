@@ -17,7 +17,7 @@ import { Project } from './projects/entities/project.entity.js';
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
         host: 'localhost',
-        port: 5434,
+        port: configService.get<number>('DB_PORT'),
         username: configService.get<string>('DB_USER_NAME'),
         password: configService.get<string>('DB_PWD'),
         database: configService.get<string>('DB_NAME'),
